@@ -1,0 +1,17 @@
+name: npm test
+on: 
+  workflow_dispatch:
+               
+jobs:
+  run-npm-install:
+    runs-on: ubuntu-latest
+    steps:
+     - name: checkout
+       uses: actions/checkout@v4 
+     - name: setup node
+       uses: actions/setup_node@v4
+       with: 'lts/*'
+     - name: run npm install
+       shell: bash
+       run: npm install
+  
