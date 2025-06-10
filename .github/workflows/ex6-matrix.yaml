@@ -9,7 +9,7 @@ jobs:
         os: [ ubuntu-latest, ubuntu-22.04]
         version: [20,lts/*]
         include:
-        - os:ubuntu-latest
+        - os: ubuntu-latest
           version: 18
     runs-on: ${{matrix.os}}
     steps:
