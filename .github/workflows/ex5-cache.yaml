@@ -12,22 +12,19 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 'lts/*'
-        - name: run install
-          shell: bash
-          run: |
-            npm install
-        - name: cash node modules install
-          uses: actions/cache@v3
-          env: 
-            cache-name: cash-node-modules
+        - uses: actions/cache@v4
           with:
-            #npm cache files are stored in `~/.npm` on Linux/MacOS
-            path: ~/.npm
+            path: ./node_modules
             key: ${{ runner.os}}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
               ${{ runner.os}}-build-${{ env.cache-name }}-
               ${{ runner.os}}-build-
               ${{ runner.os}}-
+        - name: run install
+          shell: bash
+          run: |
+            npm install
+          
 
   run-npm-test:
     runs-on: ubuntu-latest
@@ -39,19 +36,15 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 'lts/*'
-        - name: run test
-          shell: bash
-          run: |
-            npm test
-        - name: cash node modules test
-          uses: actions/cache@v3
-          env: 
-            cache-name: cash-node-modules
+        - uses: actions/cache@v4
           with:
-            #npm cache files are stored in `~/.npm` on Linux/MacOS
-            path: ~/.npm
+            path: ./node_modules
             key: ${{ runner.os}}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
               ${{ runner.os}}-build-${{ env.cache-name }}-
               ${{ runner.os}}-build-
               ${{ runner.os}}-
+        - name: run test
+          shell: bash
+          run: |
+            npm test
