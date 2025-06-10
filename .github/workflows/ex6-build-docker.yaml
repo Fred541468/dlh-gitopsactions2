@@ -20,7 +20,7 @@ jobs:
           run: |
             npm install
             npm test
-        - name: dockeer build
+        - name: docker build
           shell: bash
           run: |
             sudo docker build -t ${{ github.sha }} .
