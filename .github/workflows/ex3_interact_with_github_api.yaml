@@ -4,5 +4,9 @@ on:
 
 jobs:
   create-issue:
+    permissions: write
     runs-on: ubuntu-latest
     steps:
+      - id: short_sha
+        run: |
+          echo "sha_short=${{GITHUB_SHA::}}" >> $GITHUB_ENV
