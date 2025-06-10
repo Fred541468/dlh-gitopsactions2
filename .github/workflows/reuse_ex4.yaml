@@ -1,0 +1,9 @@
+name: reusable workflow
+on: 
+  workflow_dispatch:
+
+jobs:
+  call-reusable-workflow:
+    uses: Fred541468/dlh-gitopsqctions2/.github/workflows/reusable-workflow.yml@main
+    with:
+      node-version: 20
