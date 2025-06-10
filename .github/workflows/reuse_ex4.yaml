@@ -6,4 +6,4 @@ jobs:
   call-reusable-workflow:
     uses: Fred541468/dlh-gitopsactions2/.github/workflows/ex4.yaml@main
     with:
-      node-version: 20
+      node_version: 20
