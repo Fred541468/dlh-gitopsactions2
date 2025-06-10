@@ -16,7 +16,7 @@ jobs:
           shell: bash
           run: |
             npm install
-        - name: cash node modules
+        - name: cash node modules install
           uses: actions/cache@v3
           env: 
             cache-name: cash-node-modules
@@ -43,3 +43,15 @@ jobs:
           shell: bash
           run: |
             npm test
+        - name: cash node modules test
+          uses: actions/cache@v3
+          env: 
+            cache-name: cash-node-modules
+          with:
+            #npm cache files are stored in `~/.npm` on Linux/MacOS
+            path: ~/.npm
+            key: ${{ runner.os}}-build-${{ env.cache-name }}-${{ hashFiles(´**/package-lock.json´) }}
+            restore-keys: |
+              ${{ runner.os}}-build-${{ env.cache-name }}-
+              ${{ runner.os}}-build-
+              ${{ runner.os}}-
